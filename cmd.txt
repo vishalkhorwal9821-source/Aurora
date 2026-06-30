@@ -1,0 +1,777 @@
+Here is a comprehensive Git and GitHub command cheat sheet, organized by category.
+
+---
+
+# 1. Git Configuration
+
+```bash
+git --version
+```
+
+Check installed Git version.
+
+```bash
+git config --global user.name "Your Name"
+```
+
+Set username.
+
+```bash
+git config --global user.email "your@email.com"
+```
+
+Set email.
+
+```bash
+git config --global core.editor "code --wait"
+```
+
+Set VS Code as default editor.
+
+```bash
+git config --list
+```
+
+View all Git configurations.
+
+```bash
+git config user.name
+git config user.email
+```
+
+View current username/email.
+
+---
+
+# 2. Initialize Repository
+
+```bash
+git init
+```
+
+Initialize a Git repository.
+
+```bash
+git clone <repository-url>
+```
+
+Clone an existing repository.
+
+Example:
+
+```bash
+git clone https://github.com/user/project.git
+```
+
+---
+
+# 3. Check Status
+
+```bash
+git status
+```
+
+Shows:
+
+* Modified files
+* New files
+* Deleted files
+* Branch information
+
+---
+
+# 4. Staging Files
+
+Stage one file
+
+```bash
+git add filename
+```
+
+Stage multiple files
+
+```bash
+git add file1 file2
+```
+
+Stage all files
+
+```bash
+git add .
+```
+
+Stage everything
+
+```bash
+git add -A
+```
+
+Interactive staging
+
+```bash
+git add -p
+```
+
+---
+
+# 5. Commit Changes
+
+```bash
+git commit -m "Initial commit"
+```
+
+Commit staged changes.
+
+Commit all tracked files
+
+```bash
+git commit -am "Updated project"
+```
+
+Modify last commit
+
+```bash
+git commit --amend
+```
+
+---
+
+# 6. View History
+
+```bash
+git log
+```
+
+Compact history
+
+```bash
+git log --oneline
+```
+
+Graph view
+
+```bash
+git log --graph
+```
+
+Graph with branches
+
+```bash
+git log --graph --oneline --all
+```
+
+View specific commits
+
+```bash
+git show
+```
+
+Show a commit
+
+```bash
+git show <commit-id>
+```
+
+---
+
+# 7. Branch Commands
+
+Create branch
+
+```bash
+git branch feature
+```
+
+List branches
+
+```bash
+git branch
+```
+
+List remote branches
+
+```bash
+git branch -r
+```
+
+List all branches
+
+```bash
+git branch -a
+```
+
+Rename branch
+
+```bash
+git branch -m new-name
+```
+
+Delete branch
+
+```bash
+git branch -d branch-name
+```
+
+Force delete
+
+```bash
+git branch -D branch-name
+```
+
+---
+
+# 8. Switch Branches
+
+```bash
+git checkout branch-name
+```
+
+Create and switch
+
+```bash
+git checkout -b feature
+```
+
+Modern command
+
+```bash
+git switch feature
+```
+
+Create new branch
+
+```bash
+git switch -c feature
+```
+
+---
+
+# 9. Merge
+
+Merge branch
+
+```bash
+git merge feature
+```
+
+Abort merge
+
+```bash
+git merge --abort
+```
+
+---
+
+# 10. Rebase
+
+```bash
+git rebase main
+```
+
+Interactive rebase
+
+```bash
+git rebase -i HEAD~5
+```
+
+Abort rebase
+
+```bash
+git rebase --abort
+```
+
+Continue rebase
+
+```bash
+git rebase --continue
+```
+
+---
+
+# 11. Remote Repository
+
+Add remote
+
+```bash
+git remote add origin https://github.com/user/project.git
+```
+
+View remotes
+
+```bash
+git remote -v
+```
+
+Change remote
+
+```bash
+git remote set-url origin <url>
+```
+
+Remove remote
+
+```bash
+git remote remove origin
+```
+
+---
+
+# 12. Push
+
+First push
+
+```bash
+git push -u origin main
+```
+
+Push normally
+
+```bash
+git push
+```
+
+Push another branch
+
+```bash
+git push origin feature
+```
+
+Force push
+
+```bash
+git push --force
+```
+
+Safer force push
+
+```bash
+git push --force-with-lease
+```
+
+---
+
+# 13. Pull
+
+```bash
+git pull
+```
+
+Pull from specific branch
+
+```bash
+git pull origin main
+```
+
+Rebase while pulling
+
+```bash
+git pull --rebase
+```
+
+---
+
+# 14. Fetch
+
+```bash
+git fetch
+```
+
+Fetch all
+
+```bash
+git fetch --all
+```
+
+---
+
+# 15. Undo Changes
+
+Discard working directory changes
+
+```bash
+git restore filename
+```
+
+Restore staged file
+
+```bash
+git restore --staged filename
+```
+
+Reset file
+
+```bash
+git checkout -- filename
+```
+
+---
+
+# 16. Reset
+
+Soft reset
+
+```bash
+git reset --soft HEAD~1
+```
+
+Mixed reset
+
+```bash
+git reset HEAD~1
+```
+
+Hard reset
+
+```bash
+git reset --hard HEAD~1
+```
+
+Reset to commit
+
+```bash
+git reset --hard <commit-id>
+```
+
+---
+
+# 17. Revert
+
+Undo a commit safely
+
+```bash
+git revert <commit-id>
+```
+
+---
+
+# 18. Stash
+
+Save changes
+
+```bash
+git stash
+```
+
+List stashes
+
+```bash
+git stash list
+```
+
+Apply stash
+
+```bash
+git stash apply
+```
+
+Pop stash
+
+```bash
+git stash pop
+```
+
+Delete stash
+
+```bash
+git stash drop
+```
+
+Clear all
+
+```bash
+git stash clear
+```
+
+---
+
+# 19. Tags
+
+Create tag
+
+```bash
+git tag v1.0
+```
+
+Annotated tag
+
+```bash
+git tag -a v1.0 -m "Version 1.0"
+```
+
+Push tags
+
+```bash
+git push origin --tags
+```
+
+---
+
+# 20. Compare
+
+Compare files
+
+```bash
+git diff
+```
+
+Compare staged
+
+```bash
+git diff --staged
+```
+
+Compare commits
+
+```bash
+git diff commit1 commit2
+```
+
+---
+
+# 21. Remove Files
+
+Delete tracked file
+
+```bash
+git rm filename
+```
+
+Remove cached file
+
+```bash
+git rm --cached filename
+```
+
+---
+
+# 22. Rename Files
+
+```bash
+git mv old.txt new.txt
+```
+
+---
+
+# 23. Clean Repository
+
+Remove untracked files
+
+```bash
+git clean -f
+```
+
+Remove directories
+
+```bash
+git clean -fd
+```
+
+Preview cleanup
+
+```bash
+git clean -n
+```
+
+---
+
+# 24. Cherry Pick
+
+```bash
+git cherry-pick <commit-id>
+```
+
+---
+
+# 25. Blame
+
+```bash
+git blame filename
+```
+
+Shows who last modified each line.
+
+---
+
+# 26. GitHub Authentication (HTTPS)
+
+Login with GitHub CLI
+
+```bash
+gh auth login
+```
+
+Check authentication
+
+```bash
+gh auth status
+```
+
+Logout
+
+```bash
+gh auth logout
+```
+
+---
+
+# 27. GitHub CLI Commands
+
+Clone repository
+
+```bash
+gh repo clone owner/repo
+```
+
+Create repository
+
+```bash
+gh repo create
+```
+
+Fork repository
+
+```bash
+gh repo fork
+```
+
+Open repository
+
+```bash
+gh repo view --web
+```
+
+Create Pull Request
+
+```bash
+gh pr create
+```
+
+View Pull Requests
+
+```bash
+gh pr list
+```
+
+Merge PR
+
+```bash
+gh pr merge
+```
+
+Create Issue
+
+```bash
+gh issue create
+```
+
+List Issues
+
+```bash
+gh issue list
+```
+
+---
+
+# 28. Inspect Repository
+
+Current branch
+
+```bash
+git branch --show-current
+```
+
+Repository root
+
+```bash
+git rev-parse --show-toplevel
+```
+
+Tracked files
+
+```bash
+git ls-files
+```
+
+---
+
+# 29. Useful Aliases
+
+```bash
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.cm commit
+git config --global alias.last "log -1 HEAD"
+```
+
+Usage:
+
+```bash
+git st
+git co main
+git br
+git cm -m "message"
+git last
+```
+
+---
+
+# 30. Complete Workflow (Most Common)
+
+```bash
+# Clone project
+git clone <repo-url>
+
+# Go into project
+cd project
+
+# Create a new branch
+git checkout -b feature
+
+# Make changes
+
+# Check status
+git status
+
+# Stage changes
+git add .
+
+# Commit
+git commit -m "Added new feature"
+
+# Push branch
+git push -u origin feature
+
+# Pull latest changes
+git pull origin main
+
+# Merge (after PR or locally)
+git checkout main
+git pull
+git merge feature
+git push
+```
+
+## Most Important Commands for Interviews
+
+These are the commands you should know first:
+
+* `git init`
+* `git clone`
+* `git status`
+* `git add`
+* `git commit`
+* `git log`
+* `git branch`
+* `git switch` / `git checkout`
+* `git merge`
+* `git pull`
+* `git push`
+* `git fetch`
+* `git remote -v`
+* `git diff`
+* `git stash`
+* `git restore`
+* `git reset`
+* `git revert`
+* `git tag`
