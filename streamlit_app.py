@@ -67,7 +67,7 @@ if prompt := st.chat_input("Type your message..."):
         with st.spinner("Aurora is thinking..."):
             try:
                 resp = requests.post(
-                    "http://127.0.0.1:8000/query",
+                    "https://aurora-uegefbgvff6jdsga4twp5t.streamlit.app/",
                     json={"question": prompt, "top_k": 4},
                     timeout=25
                 )
