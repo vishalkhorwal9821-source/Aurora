@@ -1,30 +1,15 @@
-# Aurora
-Next-generation RAG assistant with semantic search, ChromaDB vector storage, Groq-powered LLM responses, and Streamlit UI for intelligent document Q&A.
+# ⭕ Aurora
 
-rag
-retrieval-augmented-generation
-llm
-ai
-python
-streamlit
-chromadb
-vector-database
-semantic-search
-embeddings
-groq
-chatbot
-generative-ai
-langchain
-document-qa
+> **Next-Generation Retrieval-Augmented Generation (RAG) Assistant**
 
-Terminal 1 – FastAPI Backend:
+Aurora is an intelligent document question-answering system that combines semantic search, vector embeddings, ChromaDB, and Groq-powered LLMs to deliver fast, accurate, and grounded responses from your knowledge base.
 
-PowerShellcd C:\Users\visha\OneDrive\Desktop\Projects\Aurora\Aurora
-python -m uvicorn app.main:app --reload --port 8000
-
-Terminal 2 – Streamlit UI:
-
-PowerShellcd C:\Users\visha\OneDrive\Desktop\Projects\Aurora\Aurora
-python -m streamlit run streamlit_app.py
-
-
+### ✨ Features
+- 🔍 Semantic Search with Sentence Transformers
+- 🧠 ChromaDB Vector Database
+- ⚡ Groq LLM Integration
+- 📄 PDF & Text Document Support
+- 🎯 Intelligent Reranking
+- 💬 Modern Streamlit Chat Interface
+- 🚀 Fast, Grounded, and Low-Hallucination Responses
+- ☁️ Streamlit Cloud Deployment Ready
