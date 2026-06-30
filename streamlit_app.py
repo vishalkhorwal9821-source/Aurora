@@ -1,6 +1,14 @@
 import streamlit as st
-import requests
 from datetime import datetime
+from query import RAGQuery
+from groq import Groq
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+rag = RAGQuery()
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 st.set_page_config(
     page_title="Aurora",
@@ -67,7 +75,7 @@ if prompt := st.chat_input("Type your message..."):
         with st.spinner("Aurora is thinking..."):
             try:
                 resp = requests.post(
-                    "http://localhost:8501",
+                    "http://localhost:8000/query",
                     json={"question": prompt, "top_k": 4},
                     timeout=25
                 )
