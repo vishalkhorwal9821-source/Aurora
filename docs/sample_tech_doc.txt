@@ -1,0 +1,5 @@
+RAG stands for Retrieval Augmented Generation.
+It combines retrieval of relevant documents with generation from LLMs.
+This improves accuracy and reduces hallucinations in answers.
+Vector embeddings capture semantic meaning of text chunks.
+ChromaDB provides fast similarity search over these embeddings.

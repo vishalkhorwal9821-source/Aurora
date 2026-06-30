@@ -1,24 +1,76 @@
-import streamlit as st
-from datetime import datetime
-from query import RAGQuery
-from groq import Groq
 import os
+
+import streamlit as st
 from dotenv import load_dotenv
+from groq import Groq
+
+from query import RAGQuery
 
 load_dotenv()
 
-rag = RAGQuery()
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+def get_groq_api_key():
+    try:
+        return st.secrets["GROQ_API_KEY"]
+    except (KeyError, FileNotFoundError, AttributeError):
+        return os.getenv("GROQ_API_KEY")
+
+
+@st.cache_resource
+def load_rag():
+    return RAGQuery()
+
+
+@st.cache_resource
+def load_groq_client():
+    api_key = get_groq_api_key()
+    if not api_key:
+        return None
+    return Groq(api_key=api_key)
+
+
+def generate_answer(question, top_k=4):
+    rag = load_rag()
+    groq_client = load_groq_client()
+
+    results = rag.retrieve(question, top_k)
+    if not results or not results["documents"][0]:
+        return "I don't know.", []
+
+    context = "\n\n".join(results["documents"][0])
+    sources = [
+        {"source": m.get("source", "unknown"), "chunk": m.get("chunk", 0)}
+        for m in results["metadatas"][0]
+    ]
+
+    prompt = f"Context:\n{context}\n\nQuestion: {question}\nAnswer concisely:"
+
+    if not groq_client:
+        return "Groq API key not configured.", sources
+
+    try:
+        completion = groq_client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+            max_tokens=400,
+        )
+        answer = completion.choices[0].message.content.strip()
+    except Exception as e:
+        answer = f"LLM error: {str(e)}"
+
+    return answer, sources
+
 
 st.set_page_config(
     page_title="Aurora",
     page_icon="⭕",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="collapsed",
 )
 
-# Premium Dark Theme + Background
-st.markdown("""
+st.markdown(
+    """
 <style>
     .main {
         background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
@@ -47,7 +99,9 @@ st.markdown("""
         box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
     }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 col1, col2 = st.columns([1, 6])
 with col1:
@@ -59,11 +113,12 @@ with col2:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Chat Container
 chat_container = st.container()
 with chat_container:
     for msg in st.session_state.messages:
-        with st.chat_message(msg["role"], avatar="⭕" if msg["role"] == "assistant" else "👤"):
+        with st.chat_message(
+            msg["role"], avatar="⭕" if msg["role"] == "assistant" else "👤"
+        ):
             st.markdown(msg["content"])
 
 if prompt := st.chat_input("Type your message..."):
@@ -73,32 +128,21 @@ if prompt := st.chat_input("Type your message..."):
 
     with st.chat_message("assistant", avatar="⭕"):
         with st.spinner("Aurora is thinking..."):
-            try:
-                resp = requests.post(
-                    "http://localhost:8000/query",
-                    json={"question": prompt, "top_k": 4},
-                    timeout=25
-                )
-                if resp.status_code == 200:
-                    data = resp.json()
-                    answer = data.get("answer", "No answer")
-                    sources = data.get("sources", [])
-                    
-                    st.markdown(answer)
-                    
-                    if sources:
-                        st.markdown("**Sources**")
-                        for s in sources:
-                            st.caption(f"📄 {s['source']} (chunk {s.get('chunk', 0)})")
-                else:
-                    st.error("Backend error")
-                    answer = "Error"
-            except Exception as e:
-                st.error("Cannot connect to backend. Is it running?")
-                answer = "Connection error"
+            answer, sources = generate_answer(prompt)
+
+            st.markdown(answer)
+
+            if sources:
+                st.markdown("**Sources**")
+                for source in sources:
+                    st.caption(
+                        f"📄 {source['source']} (chunk {source.get('chunk', 0)})"
+                    )
 
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
-# Footer
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #666;'>Made for testing only</p>", unsafe_allow_html=True)
+st.markdown(
+    "<p style='text-align: center; color: #666;'>Made for testing only</p>",
+    unsafe_allow_html=True,
+)
