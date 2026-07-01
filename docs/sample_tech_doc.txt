@@ -361,3 +361,53 @@ This would produce a professional RAG corpus suitable for semantic search.
 
 
 
+# Personal Profile: Vishal Khorwal
+
+## Basic Info
+- Full Name: Vishal Khorwal
+- Date of Birth: 06 Nov 2003
+- Gender: Male | Marital Status: Single
+- Phone: +91-9821842128 (also WhatsApp)
+- Email: vishalkhorwal9821@gmail.com
+- Location: D-218, Madipur, Paschim Vihar, New Delhi, Delhi, India – 110063
+- Languages: Hindi (native), English (native), Rajasthani (native)
+
+## Education
+- **B.Tech, Computer Science & Engineering** — Guru Gobind Singh Indraprastha University
+  (studying at Dr. Akhilesh Das Gupta Institute of Professional Studies, New Delhi)
+  2023 – 2027 | Current CGPA: 8.1 (3rd year) | Overall percentage noted elsewhere: 77.58/100
+- **12th** — Shri Sanatan Dharam Saraswati Bal Mandir Sr. Sec. School, New Delhi (CBSE), 2022 — 75.83/100
+- **10th** — Shri Sanatan Dharam Saraswati Bal Mandir Sr. Sec. School, New Delhi (CBSE), 2020 — 83.40/100
+
+## Skills
+- Languages/Tech: HTML, CSS, Java, C, C/C++, Python, JavaScript, PHP, SQL, DSA, OOPs, Node.js, RStudio
+- Tools: MySQL, Tailwind CSS, Microsoft Office/Excel/PowerPoint, Canva, GA4, Video Editing
+
+## Certifications
+- Responsive Web Design — freeCodeCamp (Oct 2025)
+- Tata – Cybersecurity Analyst Job Simulation (Aug 2025)
+
+## Projects
+1. **College Hostel Management System**
+   - Stack: PHP + SQL (database), Tailwind CSS (frontend)
+   - Team size: 4
+   - Features: room vacancy management, room repair/risk-priority system, chatbot, staff work allotment
+
+2. **Metro Route Mapping Tool**
+   - Stack: Data Structures & Algorithms (Dijkstra's algorithm)
+   - Team size: 4
+   - Features: shortest-path calculation between bus/metro stops, queue system, visual path representation for decision-making
+
+## Achievements
+- Participated in "Kritrim Dhi" society AI debate
+- Runner-up, Sanskriti Gyan Pariksha (10th grade, school level)
+- Runner-up, Calligraphy competition (1000+ participants)
+
+## Interests
+- Painting, Video Editing, Gaming
+
+## Career Objective
+Aspiring full-stack/backend developer, currently building skills in full-stack development, algorithms, SQL, and Python. Interested in opportunities like Josh Technology Group to grow into a developer role contributing to impactful projects.
+
+
+Vishal built this as a Retrieval-Augmented Generation (RAG) project — the personal/resume data above is stored as the knowledge base that gets embedded and retrieved to answer questions about me contextually, rather than hardcoding everything into a prompt.
